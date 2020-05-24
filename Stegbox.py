@@ -28,17 +28,20 @@ while True:
         elif cmd[0] == "clear": os.system("cls") if os.name == "nt" else os.system("clear")
         elif cmd[0] == "stegphoto":
             try:
-                lopt, args = getopt.getopt(cmd[1:], "", ["hidden", "restore", "sfile=", "pfile=", "output="])
+                lopt, args = getopt.getopt(cmd[1:], "", ["hidden", "restore", "sfile=", "pfile=", "output=", "passwd="])
+                motDePasse = "0"
                 if "--hidden" in cmd:
                     for opt, a in lopt:
                         if opt == "--pfile":photo = a
                         elif opt == "--sfile":fichierSecret = a
                         elif opt == "--output": imageEnSortie = a
-                    Stegphoto.StegphotoEcriture(photo, fichierSecret, imageEnSortie)
+                        elif opt == "--passwd" : motDePasse = a
+                    Stegphoto.StegphotoEcriture(photo, fichierSecret, imageEnSortie, motDePasse)
                 elif "--restore" in cmd:
                     for opt, a in lopt:
                         if opt == "--pfile":photo = a
-                    Stegphoto.StegphotoLecture(photo)
+                        if opt == "--passwd": motDePasse = a
+                    Stegphoto.StegphotoLecture(photo, motDePasse)
                 else:
                     print(" [-] Erreur du aux arguments.")
             except Exception:
@@ -46,5 +49,4 @@ while True:
         else:
             print(" [-] Commande inconnue.")
     except IndexError:
-        print(e)
         print(" [-] Veuillez entrer une commande.")

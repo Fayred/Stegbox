@@ -11,6 +11,7 @@ def Steghelp():
          --sfile=<fichier> : chemin vers le fichier à cacher
          --output=<fichier> : nom de l'image en sortie qui contiendra le fichier caché
         --restore : pour retrouver un fichier
+        --passwd=<motDePasse> : mot de passe pour le chiffrement (pas obligatoire)
         --pfile=<fichier> : chemin vers l'image qui doit contenir le fichier
 
 [Informations] :
